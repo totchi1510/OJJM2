@@ -1,0 +1,41 @@
+const apiKey = 'YOUR_GOOGLE_SHEETS_API_KEY';  // Replace with your API Key
+const spreadsheetId = 'YOUR_SPREADSHEET_ID';  // Replace with your Spreadsheet ID
+const range = 'Sheet1!A1:B100';  // Adjust the range to your sheet (dates in column A, values in column B)
+
+// Fetch data from Google Sheets
+fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`)
+  .then(response => response.json())
+  .then(data => {
+    displayData(data.values);
+  })
+  .catch(error => console.error('Error fetching data:', error));
+
+// Display the data in a table
+function displayData(data) {
+  const tableContainer = document.getElementById('table-container');
+  const table = document.createElement('table');
+
+  // Create table header row
+  const headerRow = document.createElement('tr');
+  const th1 = document.createElement('th');
+  th1.textContent = 'Date';
+  const th2 = document.createElement('th');
+  th2.textContent = 'Value';
+  headerRow.appendChild(th1);
+  headerRow.appendChild(th2);
+  table.appendChild(headerRow);
+
+  // Create table rows from data
+  data.forEach(row => {
+    const tableRow = document.createElement('tr');
+    const td1 = document.createElement('td');
+    td1.textContent = row[0];  // Date in the first column
+    const td2 = document.createElement('td');
+    td2.textContent = row[1];  // Value in the second column
+    tableRow.appendChild(td1);
+    tableRow.appendChild(td2);
+    table.appendChild(tableRow);
+  });
+
+  tableContainer.appendChild(table);
+}
