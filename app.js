@@ -1,5 +1,5 @@
-const apiKey = 'YOUR_GOOGLE_SHEETS_API_KEY';  // Replace with your API Key
-const spreadsheetId = 'YOUR_SPREADSHEET_ID';  // Replace with your Spreadsheet ID
+const apiKey = 'AIzaSyAYrVuvORhSMtfBahNHyvsYsZ_LoGtPb-Q';  // Replace with your API Key
+const spreadsheetId = '1Y9UWQbNmzGvPZxVTs732iUHo9o26KJDbSumj08xObjs';  // Replace with your Spreadsheet ID
 const range = 'Sheet1!A1:B100';  // Adjust the range to your sheet (dates in column A, values in column B)
 
 // Fetch data from Google Sheets
