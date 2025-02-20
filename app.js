@@ -1,4 +1,4 @@
-const apiKey = 'AIzaSyAYrVuvORhSMtfBahNHyvsYsZ_LoGtPb-Q';  // Replace with your API Key
+const apiKey = 'AIzaSyCnKO4VX7mzk8BNZv1ItWFVpSMHxUKoU4g';  // Replace with your API Key
 const spreadsheetId = '1Y9UWQbNmzGvPZxVTs732iUHo9o26KJDbSumj08xObjs';  // Replace with your Spreadsheet ID
 const range = 'Sheet1!A1:B100';  // Adjust the range to your sheet (dates in column A, values in column B)
 
