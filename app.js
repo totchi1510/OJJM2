@@ -1,3 +1,5 @@
+import { drawChart } from './chart.js';
+
 const apiKey = 'AIzaSyCnKO4VX7mzk8BNZv1ItWFVpSMHxUKoU4g';  // Replace with your API Key
 const spreadsheetId = '1Y9UWQbNmzGvPZxVTs732iUHo9o26KJDbSumj08xObjs';  // Replace with your Spreadsheet ID
 const range = 'Sheet1!A1:E2';  // Adjust the range to your sheet (dates in column A, values in column B)
@@ -7,6 +9,7 @@ fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/She
   .then(response => response.json())
   .then(data => {
     displayData(data.values);
+    drawChart(data.values); // Call the function to draw the chart
   })
   .catch(error => console.error('Error fetching data:', error));
 
