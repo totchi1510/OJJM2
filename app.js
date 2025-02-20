@@ -1,6 +1,6 @@
 const apiKey = 'AIzaSyCnKO4VX7mzk8BNZv1ItWFVpSMHxUKoU4g';  // Replace with your API Key
 const spreadsheetId = '1Y9UWQbNmzGvPZxVTs732iUHo9o26KJDbSumj08xObjs';  // Replace with your Spreadsheet ID
-const range = 'Sheet1!A1:B2';  // Adjust the range to your sheet (dates in column A, values in column B)
+const range = 'Sheet1!A1:E2';  // Adjust the range to your sheet (dates in column A, values in column B)
 
 // Fetch data from Google Sheets
 fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1?key=${apiKey}`)
@@ -14,31 +14,41 @@ fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/She
 function displayData(data) {
   const tableContainer = document.getElementById('table-container');
   const table = document.createElement('table');
+  table.setAttribute('border', '1'); // Optional: Adds a border to the table for better visualization
 
   // Create table header row
   const headerRow = document.createElement('tr');
-  const th1 = document.createElement('th');
-  th1.textContent = 'Date';
-  const th2 = document.createElement('th');
-  th2.textContent = 'Value';
-  headerRow.appendChild(th1);
-  headerRow.appendChild(th2);
+  
+  // Define the headers based on the columns in your data
+  const headers = ['Date', '運転スコア', '心拍数', '皮膚電位', '天気'];
+  
+  // Create header cells
+  headers.forEach(headerText => {
+    const th = document.createElement('th');
+    th.textContent = headerText;
+    headerRow.appendChild(th);
+  });
+
   table.appendChild(headerRow);
 
   // Create table rows from data
   data.forEach(row => {
     const tableRow = document.createElement('tr');
-    const td1 = document.createElement('td');
-    td1.textContent = row[0];  // Date in the first column
-    const td2 = document.createElement('td');
-    td2.textContent = row[1];  // Value in the second column
-    tableRow.appendChild(td1);
-    tableRow.appendChild(td2);
+    
+    // Create a table cell for each column in the row
+    row.forEach(cell => {
+      const td = document.createElement('td');
+      td.textContent = cell;
+      tableRow.appendChild(td);
+    });
+
     table.appendChild(tableRow);
   });
 
+  // Append the table to the container
   tableContainer.appendChild(table);
 }
+
 
 // Register the service worker
 if ('serviceWorker' in navigator) {
