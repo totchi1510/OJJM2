@@ -5,6 +5,7 @@ self.addEventListener('install', (event) => {
         '/',
         '/index.html',
         '/styles.css',
+        '/chart.js',
         '/app.js',
         '/manifest.json',
         'icons/icon_192.png',
