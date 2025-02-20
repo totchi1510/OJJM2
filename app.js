@@ -1,4 +1,4 @@
-import { drawChart } from 'chart.js';
+import { drawChart } from './chart.js';
 
 const apiKey = 'AIzaSyCnKO4VX7mzk8BNZv1ItWFVpSMHxUKoU4g';  // Replace with your API Key
 const spreadsheetId = '1Y9UWQbNmzGvPZxVTs732iUHo9o26KJDbSumj08xObjs';  // Replace with your Spreadsheet ID
