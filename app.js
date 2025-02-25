@@ -1,65 +1,83 @@
 import { drawChart } from './chart.js';
 
-const apiKey = 'AIzaSyCnKO4VX7mzk8BNZv1ItWFVpSMHxUKoU4g';  // Replace with your API Key
-const spreadsheetId = '1Y9UWQbNmzGvPZxVTs732iUHo9o26KJDbSumj08xObjs';  // Replace with your Spreadsheet ID
-const range = 'Sheet1!A1:E2';  // Adjust the range to your sheet (dates in column A, values in column B)
+const apiKey = 'AIzaSyCnKO4VX7mzk8BNZv1ItWFVpSMHxUKoU4g';  // APIキー
+const spreadsheetId = '1Y9UWQbNmzGvPZxVTs732iUHo9o26KJDbSumj08xObjs';  // スプレッドシートID
+const range = 'Sheet1!A1:E';  // 取得範囲を拡大
 
-// Fetch data from Google Sheets
-fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1?key=${apiKey}`)
-  .then(response => response.json())
-  .then(data => {
-    displayData(data.values);
-    drawChart(data.values); // Call the function to draw the chart
-  })
-  .catch(error => console.error('Error fetching data:', error));
+let dataCache = [];  // 取得済みデータを保持
 
-// Display the data in a table
-function displayData(data) {
+// Google Sheets APIからデータを取得
+function fetchData() {
+  fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.values) {
+        const newData = data.values.slice(dataCache.length); // 取得済みデータとの差分を取る
+        if (newData.length > 0) {
+          dataCache = data.values; // キャッシュを更新
+          appendData(newData); // 新しいデータを追加
+          drawChart(dataCache); // グラフを更新
+        }
+      }
+    })
+    .catch(error => console.error('Error fetching data:', error));
+}
+
+// データをテーブルに追加
+function appendData(data) {
   const tableContainer = document.getElementById('table-container');
-  const table = document.createElement('table');
-  table.setAttribute('border', '1'); // Optional: Adds a border to the table for better visualization
+  let table = tableContainer.querySelector('table');
 
-  // Create table header row
-  const headerRow = document.createElement('tr');
-  
-  // Define the headers based on the columns in your data
-  const headers = ['Date', '運転スコア', '心拍数', '皮膚電位', '天気'];
-  
-  // Create header cells
-  headers.forEach(headerText => {
-    const th = document.createElement('th');
-    th.textContent = headerText;
-    headerRow.appendChild(th);
-  });
+  if (!table) {
+    table = document.createElement('table');
+    table.setAttribute('border', '1');
 
-  table.appendChild(headerRow);
+    const headerRow = document.createElement('tr');
+    const headers = ['Date', '運転スコア', '心拍数', '皮膚電位', '天気'];
+    
+    headers.forEach(headerText => {
+      const th = document.createElement('th');
+      th.textContent = headerText;
+      headerRow.appendChild(th);
+    });
 
-  // Create table rows from data
+    table.appendChild(headerRow);
+    tableContainer.appendChild(table);
+  }
+
   data.forEach(row => {
     const tableRow = document.createElement('tr');
-    
-    // Create a table cell for each column in the row
     row.forEach(cell => {
       const td = document.createElement('td');
       td.textContent = cell;
       tableRow.appendChild(td);
     });
-
     table.appendChild(tableRow);
   });
-
-  // Append the table to the container
-  tableContainer.appendChild(table);
 }
 
+// スクロールを監視し、最下部に達したらデータ更新
+function observeScroll() {
+  const sentinel = document.createElement('div');
+  sentinel.id = 'scroll-sentinel';
+  document.body.appendChild(sentinel);
 
-// Register the service worker
+  const observer = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      fetchData();
+    }
+  }, { rootMargin: '100px' });
+
+  observer.observe(sentinel);
+}
+
+// 初期データ取得 & スクロール監視開始
+fetchData();
+observeScroll();
+
+// Service Worker登録
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('service-worker.js')
-    .then(registration => {
-      console.log('Service Worker registered with scope:', registration.scope);
-    })
-    .catch(error => {
-      console.log('Service Worker registration failed:', error);
-    });
+    .then(registration => console.log('Service Worker registered:', registration.scope))
+    .catch(error => console.log('Service Worker registration failed:', error));
 }
