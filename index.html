@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PWA Google Sheets Example</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PWA Google Sheets Example with Cash System</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <h1>Google Sheets Data</h1>
-    
-    <!-- Include Chart.js from CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <h1>Google Sheets Data</h1>
 
-    <div id="table-container"></div>
-    <div id="chart-container">
-        <canvas id="chart_div"></canvas>
-    </div>
+  <!-- Cash System / Wallet Section -->
+  <div id="wallet-container">
+    <h2>Your Wallet</h2>
+    <p>Balance: $<span id="balance">0.00</span></p>
+    <input type="number" id="amount" placeholder="Enter amount" step="0.01">
+    <button id="add-cash">Add Cash</button>
+    <button id="spend-cash">Spend Cash</button>
+  </div>
 
-    <!-- Load the app.js as a module -->
-    <script type="module" src="app.js"></script>
+  <div id="table-container"></div>
+  <div id="chart-container">
+    <canvas id="chart_div"></canvas>
+  </div>
+
+  <!-- Load the app.js as a module -->
+  <script type="module" src="app.js"></script>
 </body>
 </html>
