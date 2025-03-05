@@ -56,6 +56,19 @@ function appendData(data) {
   });
 }
 
+// Raspberry Pi のプログラムを実行する関数
+function runRaspberryPiScript() {
+  if (window.confirm("Raspberry Pi でスクリプトを実行しますか？")) {
+    fetch('/run_script', { method: 'POST' })
+      .then(response => response.text())
+      .then(data => alert("スクリプト実行結果: " + data))
+      .catch(error => console.error('Error running script:', error));
+  }
+}
+
+// ボタンのクリックイベントを追加
+document.getElementById("run_script_button").addEventListener("click", runRaspberryPiScript);
+
 // スクロールを監視し、最下部に達したらデータ更新
 function observeScroll() {
   const sentinel = document.createElement('div');
