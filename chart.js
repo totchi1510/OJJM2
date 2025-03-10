@@ -1,7 +1,7 @@
 function drawChart(data) {
   const timeLabels = data.map(row => row[0]);  // Date (X-axis)
-  const drivingScores = data.map(row => parseFloat(row[1]));  // Driving score (Y-axis)
-  const heartRates = data.map(row => parseFloat(row[2]));  // Heart rate (Y-axis)
+  const drivingScores = data.map(row => parseFloat(row[2]));  // Driving score (Y-axis)
+  const heartRates = data.map(row => parseFloat(row[4]));  // Heart rate (Y-axis)
 
   const ctx = document.getElementById('chart_div').getContext('2d');
   new Chart(ctx, {
