@@ -33,7 +33,7 @@ function appendData(data) {
     table.setAttribute('border', '1');
 
     const headerRow = document.createElement('tr');
-    const headers = ['Date', '成功率', '左右逆', '心拍数', '皮膚電位', '天気'];
+    const headers = ['Date', '成功率', '左右逆', '心拍数', '皮膚電位'];
     
     headers.forEach(headerText => {
       const th = document.createElement('th');
