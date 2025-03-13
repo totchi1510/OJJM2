@@ -83,10 +83,9 @@ function drawChart(data) {
           grid: {
             drawOnChartArea: false
           }
-        }
-      },
-      'y-axis-reverse': {
-          type: 'linear',
+      　},
+      　'y-axis-reverse': {
+        　type: 'linear',
           position: 'reverse',
           title: {
             display: true,
@@ -95,6 +94,9 @@ function drawChart(data) {
           beginAtZero: true,
           grid: {
             drawOnChartArea: false
+          }
+        }
+      },
       plugins: {
         legend: {
           position: 'top'
