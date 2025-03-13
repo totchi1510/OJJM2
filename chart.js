@@ -12,36 +12,43 @@ function drawChart(data) {
         {
           label: '運転スコア',
           data: drivingScores,
-          borderColor: 'rgba(75, 192, 192, 1)',  // Line color
+          borderColor: 'rgba(75, 192, 192, 1)',
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
           fill: false,
-          tension: 0.4,
+          tension: 0.3,
           pointStyle: 'circle',
+          borderWidth: 2,
           yAxisID: 'y-axis-driving'
         },
         {
           label: '心拍数',
           data: heartRates,
-          borderColor: 'rgba(153, 102, 255, 1)',  // Line color
+          borderColor: 'rgba(153, 102, 255, 1)',
           backgroundColor: 'rgba(153, 102, 255, 0.2)',
           fill: false,
-          tension: 0.4,
+          tension: 0.3,
           pointStyle: 'rect',
+          borderWidth: 2,
           yAxisID: 'y-axis-heart'
         }
       ]
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       scales: {
         x: {
           title: {
             display: true,
             text: '時間'
+          },
+          ticks: {
+            autoSkip: true,
+            maxTicksLimit: 10
           }
         },
         'y-axis-driving': {
-          type: 'line',
+          type: 'linear',
           position: 'left',
           title: {
             display: true,
@@ -50,7 +57,7 @@ function drawChart(data) {
           beginAtZero: true
         },
         'y-axis-heart': {
-          type: 'line',
+          type: 'linear',
           position: 'right',
           title: {
             display: true,
@@ -58,9 +65,22 @@ function drawChart(data) {
           },
           beginAtZero: true,
           grid: {
-            drawOnChartArea: false  // 右軸のグリッドラインを消す
+            drawOnChartArea: false
           }
         }
+      },
+      plugins: {
+        legend: {
+          position: 'top'
+        },
+        tooltip: {
+          mode: 'index',
+          intersect: false
+        }
+      },
+      interaction: {
+        mode: 'index',
+        intersect: false
       }
     }
   });
@@ -68,3 +88,5 @@ function drawChart(data) {
 
 // Export the function so it can be used in app.js
 export { drawChart };
+
+  
