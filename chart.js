@@ -42,9 +42,9 @@ function drawChart(data) {
           id: 'y-axis-heart',
           position: 'left',  // 心拍数を左側に
           beginAtZero: true,
-          min: 0,
-          max: 100,
           ticks: {
+            min: 0,
+            max: 100,
             stepSize: 10,  // 10刻み
             display: true  // ラベルは表示
           },
@@ -61,14 +61,14 @@ function drawChart(data) {
           id: 'y-axis-driving',
           position: 'right',  // 運転スコアを右側に
           beginAtZero: true,
-          min: 0,
-          max: 100,
           ticks: {
+            min: 0,
+            max: 100,
             stepSize: 10,  // 10刻み
             display: true  // ラベルは表示
           },
-          grid: {
-            drawOnChartArea: false  // 右軸のグリッド線を消す
+          gridLines: {
+            drawOnChartArea: false,  // 右軸のグリッド線を消す
           }
         }
       }
