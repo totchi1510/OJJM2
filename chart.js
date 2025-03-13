@@ -5,7 +5,7 @@ function drawChart(data) {
 
   const ctx = document.getElementById('chart_div').getContext('2d');
   new Chart(ctx, {
-    type: 'linear',
+    type: 'line',
     data: {
       labels: timeLabels,
       datasets: [
