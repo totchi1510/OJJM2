@@ -54,7 +54,11 @@ function drawChart(data) {
           grid: {
             drawOnChartArea: false  // 右軸のグリッドラインを消す
           }
-        }
+          ticks:{
+            min:0,
+            max:100,
+            stepSize:5,
+          }
       }
     }
   });
