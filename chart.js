@@ -1,174 +1,70 @@
 function drawChart(data) {
-    const timeLabels = data.map(row => row[0]);  // Date (X-axis)
-    const drivingScores = data.map(row => parseFloat(row[1]));  // Driving score (Y-axis)
-    const heartRates = data.map(row => parseFloat(row[3]));  // Heart rate (Y-axis)
-  
-    const ctx = document.getElementById('chart_div').getContext('2d');
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: timeLabels,
-        datasets: [
-          {
-            label: '運転スコア',
-            data: drivingScores,
-            borderColor: 'rgba(75, 192, 192, 1)',  // Line color for driving scores
-            fill: false,
-            yAxisID: 'y-axis-driving'  // Left Y-axis
-          },
-          {
-            label: '心拍数',
-            data: heartRates,
-            borderColor: 'rgba(153, 102, 255, 1)',  // Line color for heart rate
-            fill: false,
-            yAxisID: 'y-axis-heart'  // Right Y-axis
-            yAxisID: 'y-axis-heart'  // 左側Y軸
-          },
-          {
-            label: '運転スコア',
-            data: drivingScores,
-            borderColor: 'rgba(75, 192, 192, 1)',  // Line color for driving scores
-            fill: false,
-            yAxisID: 'y-axis-driving'  // 右側Y軸
+  const timeLabels = data.map(row => row[0]);  // Date (X-axis)
+  const drivingScores = data.map(row => parseFloat(row[1])).filter(val => !isNaN(val));  // Driving score (Y-axis)
+  const heartRates = data.map(row => parseFloat(row[3])).filter(val => !isNaN(val));  // Heart rate (Y-axis)
+
+  const ctx = document.getElementById('chart_div').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: timeLabels,
+      datasets: [
+        {
+          label: '運転スコア',
+          data: drivingScores,
+          borderColor: 'rgba(75, 192, 192, 1)',  // Line color
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          fill: false,
+          tension: 0.4,
+          pointStyle: 'circle',
+          yAxisID: 'y-axis-driving'
+        },
+        {
+          label: '心拍数',
+          data: heartRates,
+          borderColor: 'rgba(153, 102, 255, 1)',  // Line color
+          backgroundColor: 'rgba(153, 102, 255, 0.2)',
+          fill: false,
+          tension: 0.4,
+          pointStyle: 'rect',
+          yAxisID: 'y-axis-heart'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: '時間'
           }
-        ]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          x: {
-            title: {
-              display: true,
-              text: '時間'
-            }
+        },
+        'y-axis-driving': {
+          type: 'linear',
+          position: 'left',
+          title: {
+            display: true,
+            text: '運転スコア'
           },
-          y: {
-            title: {
-              display: true,
-              text: '運転スコア'
-              text: '心拍数'
-            },
-            id: 'y-axis-driving',
-            position: 'left',
-            id: 'y-axis-heart',
-            position: 'left',  // 心拍数を左側に
-            beginAtZero: true,
-            min: 0,
-            max: 100
-            max: 100,
-            ticks: {
-              stepSize: 10,  // 10刻み
-              display: true  // ラベルは表示
-            },
-            grid: {
-              drawTicks: false,  // 小さい補助目盛り線を消す
-              lineWidth: 1  // 主要なグリッド線のみ表示
-            }
+          beginAtZero: true
+        },
+        'y-axis-heart': {
+          type: 'linear',
+          position: 'right',
+          title: {
+            display: true,
+            text: '心拍数'
           },
-          y1: {
-            title: {
-              display: true,
-              text: '心拍数'
-              text: '運転スコア'
-            },
-            id: 'y-axis-heart',
-            position: 'right',
-            id: 'y-axis-driving',
-            position: 'right',  // 運転スコアを右側に
-            beginAtZero: true,
-            min: 0,
-            max: 100,
-            ticks: {
-              stepSize: 10,  // 10刻み
-              display: true  // ラベルは表示
-            },
-            grid: {
-              drawOnChartArea: false  // 右軸のグリッドラインを消す
-              drawOnChartArea: false  // 右軸のグリッド線を消す
-            }
+          beginAtZero: true,
+          grid: {
+            drawOnChartArea: false  // 右軸のグリッドラインを消す
           }
         }
       }
-    });
-  }
-  
-  // Export the function so it can be used in app.js
-  export { drawChart };
-   const timeLabels = data.map(row => row[0]);  // Date (X-axis)
-   const drivingScores = data.map(row => parseFloat(row[1]));  // Driving score (Y-axis)
-   const heartRates = data.map(row => parseFloat(row[3]));  // Heart rate (Y-axis)
- 
-   const ctx = document.getElementById('chart_div').getContext('2d');
-   new Chart(ctx, {
-     type: 'line',
-     data: {
-       labels: timeLabels,
-       datasets: [
-         {
-           label: '心拍数',
-           data: heartRates,
-           borderColor: 'rgba(153, 102, 255, 1)',  // Line color for heart rate
-           fill: false,
-           yAxisID: 'y-axis-heart'  // 左側Y軸
-         },
-         {
-           label: '運転スコア',
-           data: drivingScores,
-           borderColor: 'rgba(75, 192, 192, 1)',  // Line color for driving scores
-           fill: false,
-           yAxisID: 'y-axis-driving'  // 右側Y軸
-         }
-       ]
-     },
-     options: {
-       responsive: true,
-       scales: {
-         x: {
-           title: {
-             display: true,
-             text: '時間'
-           }
-         },
-         y: {
-           title: {
-             display: true,
-             text: '心拍数'
-           },
-           id: 'y-axis-heart',
-           position: 'left',  // 心拍数を左側に
-           beginAtZero: true,
-           min: 0,
-           max: 100,
-           ticks: {
-             stepSize: 10,  // 10刻み
-             display: true  // ラベルは表示
-           },
-           grid: {
-             display: false  // 左の補助線を完全に削除
-           }
-         },
-         y1: {
-           title: {
-             display: true,
-             text: '運転スコア'
-           },
-           id: 'y-axis-driving',
-           position: 'right',  // 運転スコアを右側に
-           beginAtZero: true,
-           min: 0,
-           max: 100,
-           ticks: {
-             stepSize: 10,  // 10刻み
-             display: true  // ラベルは表示
-           },
-           grid: {
-             drawOnChartArea: false  // 右軸のグリッド線を消す
-           }
-         }
-       }
-     }
-   });
- }
- 
- // Export the function so it can be used in app.js
- export { drawChart };
+    }
+  });
+}
+
+// Export the function so it can be used in app.js
+export { drawChart };
