@@ -46,7 +46,7 @@ function drawChart(data) {
           max: 100,
           ticks: {
             stepSize: 10,  // 10刻み
-            //display: true  // ラベルは表示
+            display: true  // ラベルは表示
           },
           grid: {
             display: false  // 左の補助線を完全に削除
