@@ -40,7 +40,7 @@ function drawChart(data) {
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false,
+      maintainAspectRatio: true,
       scales: {
         x: {
           title: {
@@ -122,7 +122,7 @@ new Chart(ctx2, {
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false,
+      maintainAspectRatio: true,
       scales: {
         x: {
           title: {
