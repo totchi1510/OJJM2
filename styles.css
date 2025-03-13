@@ -22,3 +22,12 @@ th {
     background-color: #f4f4f4;
     text-align: left;
 }
+
+/* ✅ Fix: Properly size the canvas */
+canvas {
+    display: block;
+    max-width: 600px;
+    max-height: 300px;
+    width: 100% !important;
+    height: auto !important;
+}
