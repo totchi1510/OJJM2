@@ -5,7 +5,7 @@ function drawChart(data) {
 
   const ctx = document.getElementById('chart_div').getContext('2d');
   new Chart(ctx, {
-    type: 'line',
+    type: 'linear',
     data: {
       labels: timeLabels,
       datasets: [
@@ -15,7 +15,7 @@ function drawChart(data) {
           borderColor: 'rgba(75, 192, 192, 1)',
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
           fill: false,
-          tension: 0.3,
+          tension: 0,
           pointStyle: 'circle',
           borderWidth: 2,
           yAxisID: 'y-axis-driving'
@@ -26,7 +26,7 @@ function drawChart(data) {
           borderColor: 'rgba(153, 102, 255, 1)',
           backgroundColor: 'rgba(153, 102, 255, 0.2)',
           fill: false,
-          tension: 0.3,
+          tension: 0,
           pointStyle: 'rect',
           borderWidth: 2,
           yAxisID: 'y-axis-heart'
@@ -48,7 +48,7 @@ function drawChart(data) {
           }
         },
         'y-axis-driving': {
-          type: 'line',
+          type: 'linear',
           position: 'left',
           title: {
             display: true,
@@ -57,7 +57,7 @@ function drawChart(data) {
           beginAtZero: true
         },
         'y-axis-heart': {
-          type: 'line',
+          type: 'linear',
           position: 'right',
           title: {
             display: true,
