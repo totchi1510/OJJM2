@@ -22,7 +22,7 @@ function drawChart(data) {
           borderColor: 'rgba(75, 192, 192, 1)',  // Line color for driving scores
           fill: false,
           yAxisID: 'y-axis-driving'  // 右側Y軸
-        }
+        },
       ]
     },
     options: {
@@ -68,12 +68,12 @@ function drawChart(data) {
           },
           grid: {
             drawOnChartArea: false  // 右軸のグリッド線を消す
-          }
-        }
-      }
-    }
+          },
+        },
+      },
+    },
   });
-}
+},
 
 // Export the function so it can be used in app.js
 export { drawChart };
