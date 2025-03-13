@@ -10,18 +10,18 @@ function drawChart(data) {
       labels: timeLabels,
       datasets: [
         {
-          label: '運転スコア',
-          data: drivingScores,
-          borderColor: 'rgba(75, 192, 192, 1)',  // Line color for driving scores
-          fill: false,
-          yAxisID: 'y-axis-driving'  // 統一Y軸
-        },
-        {
           label: '心拍数',
           data: heartRates,
           borderColor: 'rgba(153, 102, 255, 1)',  // Line color for heart rate
           fill: false,
-          yAxisID: 'y-axis-main'  // 統一Y軸
+          yAxisID: 'y-axis-heart'  // 左側Y軸
+        },
+        {
+          label: '運転スコア',
+          data: drivingScores,
+          borderColor: 'rgba(75, 192, 192, 1)',  // Line color for driving scores
+          fill: false,
+          yAxisID: 'y-axis-driving'  // 右側Y軸
         }
       ]
     },
@@ -40,12 +40,12 @@ function drawChart(data) {
             text: '心拍数'
           },
           id: 'y-axis-heart',
-          position: 'left',  // 右側の軸を削除
+          position: 'left',  // 心拍数を左側に
           beginAtZero: true,
           min: 0,
           max: 100
-          },
-          y1: {
+        },
+        y1: {
           title: {
             display: true,
             text: '運転スコア'
@@ -58,6 +58,7 @@ function drawChart(data) {
           grid: {
             drawOnChartArea: false  // グリッド線が重ならないように
           }
+        }
       }
     }
   });
