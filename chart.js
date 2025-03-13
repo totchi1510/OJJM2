@@ -2,6 +2,8 @@ function drawChart(data) {
   const timeLabels = data.map(row => row[0]);  // Date (X-axis)
   const drivingScores = data.map(row => parseFloat(row[1])).filter(val => !isNaN(val));  // Driving score (Y-axis)
   const heartRates = data.map(row => parseFloat(row[3])).filter(val => !isNaN(val));  // Heart rate (Y-axis)
+  const eda = data.map(row => parseFloat(row[4])).filter(val => !isNaN(val));  // eda (Y-axis)
+
 
   const ctx = document.getElementById('chart_div').getContext('2d');
   new Chart(ctx, {
