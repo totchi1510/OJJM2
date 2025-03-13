@@ -51,6 +51,8 @@ function drawChart(data) {
           id: 'y-axis-heart',
           position: 'right',
           beginAtZero: true,
+          min: 0,
+          max: 100,
           grid: {
             drawOnChartArea: false  // 右軸のグリッドラインを消す
           }
