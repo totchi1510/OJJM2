@@ -94,7 +94,9 @@ function drawChart(data) {
           beginAtZero: true,
           grid: {
             drawOnChartArea: false
-          }
+          },
+          suggestedMin: 0,  // ✅ Set min value for EDA
+          suggestedMax: 5
         }
       },
       plugins: {
