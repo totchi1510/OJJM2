@@ -3,6 +3,7 @@ function drawChart(data) {
   const drivingScores = data.map(row => parseFloat(row[1])).filter(val => !isNaN(val));  // Driving score (Y-axis)
   const heartRates = data.map(row => parseFloat(row[3])).filter(val => !isNaN(val));  // Heart rate (Y-axis)
   const eda = data.map(row => parseFloat(row[4])).filter(val => !isNaN(val));  // eda (Y-axis)
+  const reverse = data.map(row => parseFloat(row[2])).filter(val => !isNaN(val));  // reverse (Y-axis)
 
 
   const ctx = document.getElementById('chart_div').getContext('2d');
@@ -35,6 +36,16 @@ function drawChart(data) {
           pointStyle: 'rect',
           borderWidth: 2,
           yAxisID: 'y-axis-heart'
+        },
+        //new bar chart 
+        {
+          type: 'bar',  // Bar Chart Type
+          label: '左右逆',
+          data: reverse,
+          backgroundColor: 'rgba(255, 99, 132, 0.6)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1,
+          yAxisID: 'y-axis-reverse'
         }
       ]
     },
@@ -74,6 +85,16 @@ function drawChart(data) {
           }
         }
       },
+      'y-axis-reverse': {
+          type: 'linear',
+          position: 'reverse',
+          title: {
+            display: true,
+            text: '左右逆'
+          },
+          beginAtZero: true,
+          grid: {
+            drawOnChartArea: false
       plugins: {
         legend: {
           position: 'top'
