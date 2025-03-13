@@ -89,7 +89,7 @@ function drawChart(data) {
       }
     }
   });
-}
+
 
 new Chart(ctx2, {
     type: 'line',
