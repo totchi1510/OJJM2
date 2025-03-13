@@ -48,7 +48,7 @@ function drawChart(data) {
           }
         },
         'y-axis-driving': {
-          type: 'linear',
+          type: 'line',
           position: 'left',
           title: {
             display: true,
@@ -57,7 +57,7 @@ function drawChart(data) {
           beginAtZero: true
         },
         'y-axis-heart': {
-          type: 'linear',
+          type: 'line',
           position: 'right',
           title: {
             display: true,
