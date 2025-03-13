@@ -14,14 +14,14 @@ function drawChart(data) {
           data: drivingScores,
           borderColor: 'rgba(75, 192, 192, 1)',  // Line color for driving scores
           fill: false,
-         // yAxisID: 'y-axis-driving'  // Left Y-axis
+          yAxisID: 'y-axis-driving'  // Left Y-axis
         },
         {
           label: '心拍数',
           data: heartRates,
           borderColor: 'rgba(153, 102, 255, 1)',  // Line color for heart rate
           fill: false,
-          //yAxisID: 'y-axis-heart'  // Right Y-axis
+          yAxisID: 'y-axis-heart'  // Right Y-axis
         }
       ]
     },
