@@ -61,7 +61,6 @@ function runRaspberryPiScript() {
   if (window.confirm("Raspberry Pi でスクリプトを実行しますか？")) {
     fetch('/run_script', { method: 'POST' })
       .then(response => response.text())
-      .then(data => alert("スクリプト実行結果: " + data))
       .catch(error => console.error('Error running script:', error));
   }
 }
