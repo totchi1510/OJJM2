@@ -36,16 +36,6 @@ function drawChart(data) {
           pointStyle: 'rect',
           borderWidth: 2,
           yAxisID: 'y-axis-heart'
-        },
-        //new bar chart 
-        {
-          type: 'bar',  // Bar Chart Type
-          label: '左右逆',
-          data: reverse,
-          backgroundColor: 'rgba(255, 99, 132, 0.6)',
-          borderColor: 'rgba(255, 99, 132, 1)',
-          borderWidth: 1,
-          yAxisID: 'y-axis-reverse'
         }
       ]
     },
@@ -83,21 +73,7 @@ function drawChart(data) {
           grid: {
             drawOnChartArea: false
           }
-      　},
-      　'y-axis-reverse': {
-        　type: 'linear',
-          position: 'reverse',
-          title: {
-            display: true,
-            text: '左右逆'
-          },
-          beginAtZero: true,
-          grid: {
-            drawOnChartArea: false
-          },
-          suggestedMin: 0,  // ✅ Set min value for EDA
-          suggestedMax: 5
-        }
+      　}
       },
       plugins: {
         legend: {
