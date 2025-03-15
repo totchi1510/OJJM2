@@ -109,7 +109,7 @@ new Chart(ctx2, {
           yAxisID: 'y-axis-driving2'
         },
         {
-          label: '心拍数',
+          label: '皮膚電位',
           data: eda,
           borderColor: 'rgba(153, 102, 255, 1)',
           backgroundColor: 'rgba(153, 102, 255, 0.2)',
